@@ -8,10 +8,10 @@ if you == 'X':
     comp = "0"
 if you == '0':
     comp = "X"
-print("you take:",you,"computer takes:",comp)
+print("You take:",you,"and","Computer takes:",comp)
 
 winner = None
-gameRunning = True
+PlayGame = True
 
 def printBoard(T_T_T):
     print(T_T_T [0] + " | " + T_T_T [1] + " | " + T_T_T [2])
@@ -21,8 +21,7 @@ def printBoard(T_T_T):
 def playerInput(T_T_T):
     inp = int(input("Select a spot 1-9: "))
     if T_T_T [inp-1] == "-":
-        T_T_T [inp-1] = you
-        
+        T_T_T [inp-1] = you    
 
 def match(T_T_T ):
     global winner
@@ -42,7 +41,7 @@ def match(T_T_T ):
         winner = T_T_T [1]
         return True
     elif T_T_T [2] == T_T_T [5] == T_T_T [8] and T_T_T [2] != "-":
-        winner = T_T_T [3]
+        winner = T_T_T [2]
         return True
     elif T_T_T [0] == T_T_T [4] == T_T_T [8] and T_T_T [0] != "-":
         winner = T_T_T [0]
@@ -52,18 +51,18 @@ def match(T_T_T ):
         return True
 
 def forWin(T_T_T ):
-    global gameRunning
+    global PlayGame
     if match(T_T_T):
         printBoard(T_T_T)
         print(f"Congratulations! The winner is {winner}!")
-        gameRunning = False
+        PlayGame = False
 
 def forTie(T_T_T ):
-    global gameRunning
+    global PlayGame
     if "-" not in T_T_T :
         printBoard(T_T_T)
         print("The game tie!")
-        gameRunning = False
+        PlayGame = False
 
 def switchPlayer():
     global you
@@ -86,7 +85,7 @@ def computer(T_T_T):
             T_T_T [position] = "X"
             switchPlayer()
 
-while gameRunning:
+while PlayGame:
     printBoard(T_T_T )
     playerInput(T_T_T )
     switchPlayer()
